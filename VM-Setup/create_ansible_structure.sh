@@ -50,6 +50,11 @@ cat <<EOF >roles/deploy_files_and_docker/tasks/build_containers.yml
   async: 3600
   poll: 0
 
+- name: test docker-compose
+  docker_compose:
+    project_src: /home/admin/clock_app/
+    state: present
+
 EOF
 
 # Create the template file
