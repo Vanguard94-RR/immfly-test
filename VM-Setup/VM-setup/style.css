@@ -1,0 +1,29 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #030303;
+  color: #42eef4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+}
+
+.clock {
+  text-align: center;
+}
+
+#clockTime {
+  font-size: 8em;
+  text-shadow: 0 0 10px #42eef4;
+}
+
+#clockDate {
+  font-size: 4em;
+}
+

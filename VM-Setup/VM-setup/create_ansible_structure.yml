@@ -1,0 +1,53 @@
+- name: Create file and folder structure
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create deploy_files_and_docker folder
+      file:
+        path: roles/deploy_files_and_docker
+        state: directory
+
+    - name: Create tasks folder
+      file:
+        path: roles/deploy_files_and_docker/tasks
+        state: directory
+
+    - name: Create templates folder
+      file:
+        path: roles/deploy_files_and_docker/templates
+        state: directory
+
+    - name: Create defaults folder
+      file:
+        path: roles/deploy_files_and_docker/defaults
+        state: directory
+
+    - name: Create main.yml file
+      file:
+        path: roles/deploy_files_and_docker/tasks/main.yml
+        state: touch
+
+    - name: Create list_files.yml file
+      file:
+        path: roles/deploy_files_and_docker/tasks/list_files.yml
+        state: touch
+
+    - name: Create copy_files.yml file
+      file:
+        path: roles/deploy_files_and_docker/tasks/copy_files.yml
+        state: touch
+
+    - name: Create build_containers.yml file
+      file:
+        path: roles/deploy_files_and_docker/tasks/build_containers.yml
+        state: touch
+
+    - name: Create docker-compose.yml.j2 file
+      file:
+        path: roles/deploy_files_and_docker/templates/docker-compose.yml.j2
+        state: touch
+
+    - name: Create main.yml file
+      file:
+        path: roles/deploy_files_and_docker/defaults/main.yml
+        state: touch

@@ -1,0 +1,19 @@
+# Use the official Nginx image as the base image
+FROM nginx:alpine
+
+# Remove the default Nginx configuration file
+RUN rm /etc/nginx/conf.d/default.conf
+
+# Copy the custom Nginx configuration file to the container
+COPY nginx.conf /etc/nginx/conf.d
+
+# Copy the frontend application files to the container
+COPY index.html /usr/share/nginx/html/
+COPY style.css /usr/share/nginx/html/
+COPY script.js /usr/share/nginx/html/
+
+# Expose port 80 for Nginx
+EXPOSE 80
+
+# Start the Nginx server when the container is run
+CMD ["nginx", "-g", "daemon off;"]
