@@ -46,7 +46,9 @@ EOF
 touch roles/deploy_files_and_docker/tasks/build_containers.yml
 cat <<EOF >roles/deploy_files_and_docker/tasks/build_containers.yml
 - name: Build backend and frontend containers
-  shell: cd /home/admin/clock_app/ && docker-compose up --build
+  shell: docker-compose up --build
+  async: 1800
+  poll: 0
 
 EOF
 

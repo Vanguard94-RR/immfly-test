@@ -1,6 +1,0 @@
-- name: List files in local directory
-  find:
-    paths: /home/mint/Documents/immfly-test/VM-Setup/files_deploy/
-    file_type: file
-  register: files_to_deploy
-

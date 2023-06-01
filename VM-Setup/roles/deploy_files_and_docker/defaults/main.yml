@@ -1,7 +1,0 @@
-# Default variables for the deploy_files_and_docker role
-
-# Define the local directory containing files to deploy
-local_directory: "{{ ansible_env.PWD }}/files_deploy"
-
-# Define the destination path on the remote host
-remote_directory: /home/admin/clock_app/

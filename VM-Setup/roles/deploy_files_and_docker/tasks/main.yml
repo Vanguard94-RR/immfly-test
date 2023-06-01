@@ -1,3 +1,0 @@
-- include_tasks: list_files.yml
-- include_tasks: copy_files.yml
-- include_tasks: build_containers.yml

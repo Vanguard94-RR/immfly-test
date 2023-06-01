@@ -1,4 +1,0 @@
-- name: Build backend and frontend containers
-  command: docker-compose up --build
-  args:
-    chdir: /home/admin/clock_app/
