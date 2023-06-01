@@ -1,9 +1,9 @@
 <domain type='qemu' id='9'>
   <name>immfly-debian10</name>
   <uuid>4b68e38d-1bbc-4327-9da1-be6f688b182a</uuid>
-  <memory unit='KiB'>2048576</memory>
-  <currentMemory unit='KiB'>2048576</currentMemory>
-  <vcpu placement='static'>2</vcpu>
+  <memory unit='KiB'>1048576</memory>
+  <currentMemory unit='KiB'>1048576</currentMemory>
+  <vcpu placement='static'>1</vcpu>
   <resource>
     <partition>/machine</partition>
   </resource>
@@ -20,7 +20,7 @@
     <emulator>/usr/bin/qemu-system-x86_64</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='raw'/>
-      <source file='/home/mint/Documents/immfly-test/VM-Setup/debian10-ssh.img'/>
+      <source file='/home/mint/Documents/immfly-test/VM-Setup/VM-setup/debian10-ssh.img'/>
       <backingStore/>
       <target dev='vda' bus='virtio'/>
       <alias name='virtio-disk0'/>

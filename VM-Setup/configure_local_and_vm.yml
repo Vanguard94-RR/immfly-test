@@ -8,25 +8,6 @@
         manager: auto
       register: package_result
 
-    - name: Install required packages
-      package:
-        name: "{{ item }}"
-        state: present
-      loop:
-        - qemu-kvm
-        - libvirt-daemon-system
-        - libvirt-clients
-        - bridge-utils
-        - libnss-libvirt
-        - sshpass
-        - ca-certificates
-        - curl
-        - gnupg
-        - docker-compose
-        - python3-pip
-        - npm
-      when: "'{{ item }}' not in package_result.package_manager_list | flatten(1) | map(attribute='name') | list"
-
     - name: Create VM-setup folder
       file:
         path: "{{ ansible_env.PWD }}/VM-setup"
@@ -37,6 +18,12 @@
         url: "https://immfly-infra-technical-test.s3-eu-west-1.amazonaws.com/debian10-ssh.img.tar.xz"
         dest: "{{ ansible_env.PWD }}/VM-setup/debian10-ssh.img.tar.xz"
 
+    - name: Extract Virtual Machine image debian10-ssh.img.tar.xz
+      unarchive:
+        src: "{{ ansible_env.PWD }}/VM-setup/debian10-ssh.img.tar.xz"
+        dest: "{{ ansible_env.PWD }}/VM-setup/"
+        remote_src: true
+
     - name: Download Virtual Machine RSA Key
       get_url:
         url: "https://raw.githubusercontent.com/immfly/tech-test-infra/master/assets/rsa"
@@ -46,12 +33,6 @@
       get_url:
         url: "https://raw.githubusercontent.com/immfly/tech-test-infra/master/assets/rsa.pub"
         dest: "{{ ansible_env.PWD }}/VM-setup/rsa.pub"
-
-    - name: Extract Virtual Machine image debian10-ssh.img.tar.xz
-      unarchive:
-        src: "{{ ansible_env.PWD }}/VM-setup/debian10-ssh.img.tar.xz"
-        dest: "{{ ansible_env.PWD }}/VM-setup/"
-        remote_src: true
 
     - name: Download vm.xml
       get_url:
@@ -64,16 +45,21 @@
         regexp: "\\${PATH_TO_VM_DISK_FILE}"
         replace: "{{ ansible_env.PWD }}/VM-setup/debian10-ssh.img"
 
+    - name: Initialize VM
+      command: virsh create "{{ ansible_env.PWD }}/VM-setup/vm.xml"
+      ignore_errors: true
+
     - name: Create Basic Ansible Structure
-      include_tasks: path/to/another_playbook.yml
+      script: "{{ ansible_env.PWD }}/create_ansible_structure.sh"
 
     - name: Download Frontend file
       get_url:
         url: "https://raw.githubusercontent.com/immfly/tech-test-infra/master/assets/index.html"
-        dest: "{{ ansible_env.PWD }}/clock_app/roles/frontend/templates/index.html"
+        dest: "{{ ansible_env.PWD }}/frontend/index.html"
 
     - name: Copy and execute init files in VM
-      script: "{{ ansible_env.PWD }}/VM-setup/copy_init_files_to_vm.sh"
+      script: "{{ ansible_env.PWD }}/copy_init_files_to_vm.sh"
+      ignore_errors: true
 
     - name: Create local ansible inventory file with vm data
       script: "{{ ansible_env.PWD }}/create_inventory_file.sh"

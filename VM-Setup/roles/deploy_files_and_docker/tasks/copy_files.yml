@@ -1,0 +1,27 @@
+- name: Copy files Frontend files to remote host
+  copy:
+    src: /home/mint/Documents/immfly-test/VM-Setup/frontend/
+    dest: /home/admin/clock_app/
+
+- name: Move files
+  shell: mv /home/admin/clock_app/frontend/* /home/admin/clock_app/
+  ignore_errors: true
+
+- name: Copy files Backend files to remote host
+  copy:
+    src: /home/mint/Documents/immfly-test/VM-Setup/backend/
+    dest: /home/admin/clock_app/
+
+- name: Move files
+  shell: mv /home/admin/clock_app/backend/* /home/admin/clock_app/
+  ignore_errors: true
+
+- name: Copy files Docker files to remote host
+  copy:
+    src: /home/mint/Documents/immfly-test/VM-Setup/docker/
+    dest: /home/admin/clock_app/
+
+- name: Move files
+  shell: mv /home/admin/clock_app/docker/* /home/admin/clock_app/
+  ignore_errors: true
+

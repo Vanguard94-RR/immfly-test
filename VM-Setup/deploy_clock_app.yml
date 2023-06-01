@@ -1,0 +1,4 @@
+- name: Deploy files and build Docker containers
+  hosts: web_clock
+  roles:
+    - deploy_files_and_docker
