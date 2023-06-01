@@ -31,5 +31,8 @@ To deploy the application use:
 
 Run those commands from within the VM-Setup folder
 
-Once completed ssh in to the vm and run $ docker-compose up.
-The application will be available in http://192.168.122.188:80
+
+Once completed manually ssh in to the vm as "admin" with "asdf" and run $ sudo docker-compose up.
+
+
+the application will be available in http://192.168.122.188:80
