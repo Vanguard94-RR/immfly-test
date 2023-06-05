@@ -23,15 +23,14 @@ used independently to configure de vm, in order to deploy the application the vm
 
 To configure local machine and VM use:
 
-    $ sudo ansible-playbook configure_local_and_vm.yml
+    $sudo ansible-playbook configure_local_and_vm.yml
 
 To deploy the application use:
 
-    $ sudo ansible-playbook -i hosts.ini deploy_clock_app.yml
+    $sudo ansible-playbook -i hosts.ini deploy_clock_app.yml
 
 Run those commands from within the VM-Setup folder
 
-The application will be available in http://192.168.122.188:80
+The application will be available in "<http://192.168.122.188:80>"
 
 Or you can manually ssh in to the vm as "admin" with "asdf" and run $ sudo docker-compose up.
-
