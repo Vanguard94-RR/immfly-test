@@ -1,8 +1,8 @@
 #! /bin/bash
 
-sudo apt-get update && apt-get upgrade
+sudo apt-get update -y && apt-get upgrade -y
 
-sudo apt-get passwd install ca-certificates curl gnupg docker-compose python3-pip npm -y
+sudo apt-get install passwd ca-certificates curl gnupg docker-compose python3-pip npm -y
 
 sudo npm init -y
 
